@@ -3,7 +3,7 @@ package pl.marcin.plonski.requestcountapp.users.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="CONFERENCE_USER")
+@Table(name="REPOSITORY_USER")
 public class User {
 
     @Id
@@ -35,5 +35,9 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public void incrementNumberOfCalls() {
+        this.numberOfCalls += 1;
     }
 }

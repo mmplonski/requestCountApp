@@ -7,4 +7,5 @@ import pl.marcin.plonski.requestcountapp.users.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    User findByLogin(String login);
 }

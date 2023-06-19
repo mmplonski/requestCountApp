@@ -18,10 +18,23 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User getUserByLogin(String login) {
-        UserDto user = getUserFromAPI(login);
-        System.out.println(user);
-        return null;
+    public UserDto getUserByLogin(String login) {
+        UserDto userDto = getUserFromAPI(login);
+        User user = saveUserToDB(userDto);
+        return userDto;
+    }
+
+    private User saveUserToDB(UserDto user) {
+        User byLogin = userRepository.findByLogin(user.getLogin());
+        if (byLogin != null) {
+            byLogin.incrementNumberOfCalls();
+            return userRepository.save(byLogin);
+        } else {
+            User newUser = new User();
+            newUser.setLogin(user.getLogin());
+            newUser.incrementNumberOfCalls();
+            return userRepository.save(newUser);
+        }
     }
 
     private UserDto getUserFromAPI(String login) {

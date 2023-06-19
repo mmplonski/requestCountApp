@@ -4,5 +4,5 @@ import pl.marcin.plonski.requestcountapp.users.model.User;
 
 public interface UserService {
 
-    User getUserByLogin(String login);
+    UserDto getUserByLogin(String login);
 }
