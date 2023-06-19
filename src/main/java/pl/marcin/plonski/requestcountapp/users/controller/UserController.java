@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.marcin.plonski.requestcountapp.users.model.User;
 import pl.marcin.plonski.requestcountapp.users.service.UserDto;
 import pl.marcin.plonski.requestcountapp.users.service.UserService;
 
@@ -19,7 +18,7 @@ public class UserController {
     }
 
     @GetMapping("/{login}")
-    public UserDto getUser(@PathVariable String login) {
+    public UserDto getUserByLogin(@PathVariable String login) {
         return userService.getUserByLogin(login);
     }
 
