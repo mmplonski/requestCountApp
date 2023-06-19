@@ -23,11 +23,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getUserByLogin(String login) {
         UserDto userDto = getUserFromAPI(login);
-        User user = saveUserToDB(userDto);
+        saveUserToDB(userDto);
         return userDto;
     }
 
-    private User saveUserToDB(UserDto user) {
+    public User saveUserToDB(UserDto user) {
         User byLogin = userRepository.findByLogin(user.getLogin());
         if (byLogin != null) {
             byLogin.incrementNumberOfCalls();
